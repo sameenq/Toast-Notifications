@@ -1,0 +1,32 @@
+<div class='container'>
+
+    <h1>Toast Messages</h1>
+
+    <label>Timeout Duration</label>
+    <input [(ngModel)]="duration" type="number" />
+
+    <label>Limit</label>
+    <input [(ngModel)]="limit" type="number" />
+
+    <label>Position</label>
+    <select [(ngModel)]="position">
+        <option value="top-right">Top Right</option>
+        <option value="top-left">Top Left</option>
+        <option value="bottom-right">Bottom Right</option>
+        <option value="bottom-left">Bottom Left</option>
+    </select>
+
+    <button class="btn btn-success" (click)="toastService.success('Success!!', options)">Success</button>
+    <button class="btn btn-error" (click)="toastService.error('Error :(', options)">Error</button>
+    <button class="btn btn-warning " (click)="toastService.warn('Warning: ...', options)">Warning</button>
+
+</div>
+
+
+<div class="{{setPosition(position)}}">
+    <!-- code -->
+    <div *ngFor="let toast of toasts" class="{{setToastType(toast)}}">
+        <a class="close" (click)="removeToast(toast)">&times;</a>
+        <span [innerHTML]="toast.message"></span>
+    </div>
+ </div>
