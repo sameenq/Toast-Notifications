@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { Toast, ToastType } from './toast.model';
 import { ToastService } from './toast.service';
+import { MODAL_CONFIG_DEFAULTS } from './toast.config';
 
 @Component({
   selector: 'xyz-toast',
@@ -12,11 +13,12 @@ import { ToastService } from './toast.service';
 export class ToastComponent implements OnInit, OnDestroy {
   @Input() id = 'default-alert';
   @Input() fade = true;
-  @Input() limit: number;
-  @Input() duration: number;
+  @Input() limit= MODAL_CONFIG_DEFAULTS.limit;
+  @Input() duration= MODAL_CONFIG_DEFAULTS.duration;
   @Input() message: string;
 
-  position: string = 'top-right';
+  position= MODAL_CONFIG_DEFAULTS.position;
+
   private options = {
     keepAfterRouteChange: false,
   };
@@ -44,18 +46,8 @@ export class ToastComponent implements OnInit, OnDestroy {
           return;
         }
 
-        //set toast limit to 5 only if unset
-        if (!this.limit) {
-          this.limit = 5;
-        }
-
         if (this.toasts.length < this.limit) {
           this.toasts.push(toast);
-        }
-
-        // Set toast timeout to 5 seconds if the user input is empty
-        if (!this.duration) {
-          this.duration = 5000;
         }
 
         setTimeout(() => this.removeToast(toast), this.duration);

@@ -12,6 +12,13 @@ export class Toast {
   }
 }
 
+export interface ModalConfig
+{
+    limit: number,
+    duration: number;
+    position: string;
+}
+
 export enum ToastType {
   SUCCESS='SUCCESS',
   ERROR='ERROR',
