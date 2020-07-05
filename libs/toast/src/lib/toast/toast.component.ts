@@ -15,7 +15,7 @@ export class ToastComponent implements OnInit, OnDestroy {
   @Input() fade = true;
   @Input() limit= MODAL_CONFIG_DEFAULTS.limit;
   @Input() duration= MODAL_CONFIG_DEFAULTS.duration;
-  @Input() message: string;
+  @Input() message= MODAL_CONFIG_DEFAULTS.message;
 
   position= MODAL_CONFIG_DEFAULTS.position;
 

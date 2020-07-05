@@ -14,8 +14,9 @@ export class Toast {
 
 export interface ModalConfig
 {
-    limit: number,
     duration: number;
+    limit: number,
+    message: string, 
     position: string;
 }
 
