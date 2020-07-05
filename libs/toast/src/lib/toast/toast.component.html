@@ -8,6 +8,9 @@
     <label>Limit</label>
     <input [(ngModel)]="limit" type="number" />
 
+    <label>Notification Message</label>
+    <input [(ngModel)]="message" type="text" />
+
     <label>Position</label>
     <select [(ngModel)]="position">
         <option value="top-right">Top Right</option>
@@ -25,7 +28,7 @@
 <div class="{{setPosition(position)}}">
     <div *ngFor="let toast of toasts" class="toast">
     <span class="close" (click)="removeToast(toast)">&times;</span>
-        <div class="{{setToastHeader(toast)}}" [innerHTML]="toast.message"></div>
+        <div class="{{setToastHeader(toast)}}" [innerHTML]="toast.heading"></div>
         <div class="toast-body">
             <p [innerHTML]="toast.message"></p>
         </div>

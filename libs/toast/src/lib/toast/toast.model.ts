@@ -1,6 +1,7 @@
 export class Toast {
     id: string;
     type: ToastType;
+    heading:string;
     message: string;
     keepAfterRouteChange: boolean;
     fade: boolean;
