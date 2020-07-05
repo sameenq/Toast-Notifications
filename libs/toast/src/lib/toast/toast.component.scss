@@ -1,3 +1,8 @@
+$success: #4CAF50;
+$warning: #ff9800;
+$error: #f44336;
+$button-border: 0.125rem;
+
 /** Toast Notifications **/
 .toast {
     width:15rem;
@@ -23,15 +28,15 @@
   }
 
   .header-success {
-    background: #4CAF50;
+    background: $success;
   }
 
   .header-error {
-    background: #f44336;
+    background: $error;
   }
 
   .header-warning {
-    background: #ff9800;
+    background: $warning;
   }
 
   .toast-body {
@@ -49,11 +54,10 @@
     margin-right:0.1rem;
     cursor: pointer;
     transition: 0.3s;
-  }
-  
-  .close:hover {
+  &:hover {
     color: black;
   }
+}
 
   /** Positions **/
   .bottom-right{
@@ -98,34 +102,34 @@
   }
   
   .btn-success {
-    background-color: #4CAF50; 
+    background-color: $success; 
     color: white; 
-    border: 0.125rem solid #4CAF50;
+    border: $button-border solid $success;
   
   
   &:hover {
     background-color: white;
-    color: #4CAF50;
+    color: $success;
   }
 }
 
   .btn-error {
-    background-color: #f44336; 
+    background-color: $error; 
     color: white; 
-    border: 0.125rem solid #f44336;
+    border: $button-border solid $error;
   &:hover {
     background-color: white;
-    color: #f44336;
+    color: $error;
   }
 }
 
   .btn-warning {
-    background-color: #ff9800; 
+    background-color: $warning; 
     color: white; 
-    border: 0.125rem solid #ff9800;
+    border: $button-border solid $warning;
   &:hover {
     background-color: white;
-    color: #ff9800;
+    color: $warning;
   }
 }
 
