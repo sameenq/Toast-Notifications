@@ -12,7 +12,7 @@ import { MODAL_CONFIG_DEFAULTS } from './toast.config';
 })
 export class ToastComponent implements OnInit, OnDestroy {
   @Input() id = 'default-alert';
-  @Input() fade = true;
+  @Input() fade = MODAL_CONFIG_DEFAULTS.fade;
   @Input() limit= MODAL_CONFIG_DEFAULTS.limit;
   @Input() duration= MODAL_CONFIG_DEFAULTS.duration;
   @Input() message= MODAL_CONFIG_DEFAULTS.message;
