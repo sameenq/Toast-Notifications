@@ -25,9 +25,11 @@
 <div class="{{setPosition(position)}}">
     <div *ngFor="let toast of toasts" class="toast">
     <span class="close" (click)="removeToast(toast)">&times;</span>
-        <div class="{{setToastHeader(toast)}}" [innerHTML]="toast.message"></div>
+        <div class="{{setToastHeader(toast)}}">
+            {{toast.message}}
+        </div>
         <div class="toast-body">
-            <p [innerHTML]="toast.message"></p>
+            <p> {{toast.message}}</p>
         </div>
     </div>
  </div>
