@@ -24,3 +24,9 @@ export enum ToastType {
   ERROR='ERROR',
   WARNING='WARNING',
 }
+
+export enum HeaderMessage {
+    SUCCESS='Success :)',
+    ERROR='Error :(',
+    WARNING='Warning!',
+  }

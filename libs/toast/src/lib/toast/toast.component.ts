@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { Toast, ToastType } from './toast.model';
+import { Toast, ToastType, HeaderMessage } from './toast.model';
 import { ToastService } from './toast.service';
 import { MODAL_CONFIG_DEFAULTS } from './toast.config';
 
@@ -81,20 +81,20 @@ export class ToastComponent implements OnInit, OnDestroy {
    * Show success notification
    */
   showSuccess() {
-    this.toastService.success('Success!!', this.message, this.options);
+    this.toastService.success(HeaderMessage.SUCCESS, this.message, this.options);
   }
 
   /**
    * Show error notification
    */
   showError() {
-    this.toastService.error('Error :(', this.message, this.options);
+    this.toastService.error(HeaderMessage.ERROR, this.message, this.options);
   }
 
   /**
    * Show warning notification
    */
   showWarning() {
-    this.toastService.warn('Warning!.', this.message, this.options);
+    this.toastService.warn(HeaderMessage.WARNING, this.message, this.options);
   }
 }
