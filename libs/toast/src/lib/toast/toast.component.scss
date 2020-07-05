@@ -1,27 +1,52 @@
 /** Toast Notifications **/
 .toast {
     width:15rem;
-    padding: 1rem;
     color: white;
     opacity: 1;
     text-align: center;
     transition: opacity 0.6s;
-    margin-top: 0.2rem;
-    margin-bottom: 0.2rem;
+    margin: 0.3rem;
     position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+  }
+
+  .toast:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  .header {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  .header-success {
+    background: #4CAF50;
+  }
+
+  .header-error {
+    background: #f44336;
+  }
+
+  .header-warning {
+    background: #ff9800;
+  }
+
+  .toast-body {
+    padding: 0.5rem;
+    background-color: #f2f2f2;
+    color: black
   }
   
-  .toast-success {background-color: #4CAF50;}
-  .toast-warning {background-color: #ff9800;}
-  .toast-error {background-color: #f44336;}
-  
   .close {
-    margin-left: 0.1rem;
     color: white;
     font-weight: bold;
     float: right;
-    font-size: 1.5rem;
-    line-height: 1.25rem;
+    font-size: 1.2rem;
+    line-height: inherit;
+    margin-right:0.1rem;
     cursor: pointer;
     transition: 0.3s;
   }

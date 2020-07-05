@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { Toast, ToastType } from './toast.model';
@@ -19,14 +18,14 @@ export class ToastComponent implements OnInit,OnDestroy {
   @Input() duration:number;
  
   position:string = 'top-right';
-  options = {
+  private options = {
     keepAfterRouteChange: false
 };
 
   toasts: Toast[] = [];
   toastSubscription: Subscription;
 
-  constructor(private router: Router, private toastService: ToastService) { }
+  constructor(private toastService: ToastService) { }
 
   ngOnInit() {
     // subscribe to new toast notifications
@@ -90,15 +89,15 @@ removeToast(toast: Toast) {
  * 
  * @param toast 
  */
-setToastType(toast: Toast) {
+setToastHeader(toast: Toast) {
     if (!toast) return;
 
-    const classes = ['toast'];
+    const classes = ['header'];
             
     const ToastTypeClass = {
-        [ToastType.Success]: 'toast-success',
-        [ToastType.Error]: 'toast-error',
-        [ToastType.Warning]: 'toast-warning'
+        [ToastType.Success]: 'header-success',
+        [ToastType.Error]: 'header-error',
+        [ToastType.Warning]: 'header-warning'
     }
 
     classes.push(ToastTypeClass[toast.type]);
@@ -140,7 +139,7 @@ showError()
  */
 showWarning()
 {
-    this.toastService.warn('Warning: ...', this.options);
+    this.toastService.warn('Warning!.', this.options);
 }
 
 }
