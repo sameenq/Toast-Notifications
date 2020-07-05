@@ -23,6 +23,7 @@ export class ToastComponent implements OnInit, OnDestroy {
 
   toasts: Toast[] = [];
   toastSubscription: Subscription;
+  toastType= ToastType;
 
   constructor(private toastService: ToastService) {}
 
@@ -82,40 +83,6 @@ export class ToastComponent implements OnInit, OnDestroy {
       // remove toast
       this.toasts = this.toasts.filter((x) => x !== toast);
     }
-  }
-
-  /**
-   * Set Css for Toast Notification Type
-   *
-   * @param toast
-   */
-  setToastHeader(toast: Toast) {
-    if (!toast) return;
-
-    const classes = ['toast-header'];
-
-    const ToastTypeClass = {
-      [ToastType.Success]: 'header-success',
-      [ToastType.Error]: 'header-error',
-      [ToastType.Warning]: 'header-warning',
-    };
-
-    classes.push(ToastTypeClass[toast.type]);
-
-    if (toast.fade) {
-      classes.push('fade');
-    }
-
-    return classes.join(' ');
-  }
-
-  /**
-   * set toast notification position
-   *
-   * @param position
-   */
-  setPosition(position: string) {
-    return position;
   }
 
   /**

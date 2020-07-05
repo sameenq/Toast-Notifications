@@ -17,19 +17,19 @@ export class ToastService {
   // convenience methods
   success(heading: string, message: string, options?: any) {
     this.toast(
-      new Toast({ ...options, type: ToastType.Success, message, heading })
+      new Toast({ ...options, type: ToastType.SUCCESS, message, heading })
     );
   }
 
   error(heading: string, message: string, options?: any) {
     this.toast(
-      new Toast({ ...options, type: ToastType.Error, message, heading })
+      new Toast({ ...options, type: ToastType.ERROR, message, heading })
     );
   }
 
   warn(heading: string, message: string, options?: any) {
     this.toast(
-      new Toast({ ...options, type: ToastType.Warning, message, heading })
+      new Toast({ ...options, type: ToastType.WARNING, message, heading })
     );
   }
 

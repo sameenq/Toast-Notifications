@@ -23,10 +23,20 @@
   <button class="btn btn-warning" (click)="showWarning()">Warning</button>
 </div>
 
-<div class="position {{ setPosition(position) }}">
+<div class="position" [ngClass]="position">
   <div *ngFor="let toast of toasts" class="toast">
     <span class="close" (click)="removeToast(toast)">&times;</span>
-    <div class="{{ setToastHeader(toast) }}">{{ toast.heading }}</div>
+    <!-- <div class="{{ setToastHeader(toast) }}">{{ toast.heading }}</div> -->
+    <div
+      class="toast-header"
+      [ngClass]="{
+        'header-success': toast.type === toastType.SUCCESS,
+        'header-warning': toast.type === toastType.WARNING,
+        'header-error': toast.type === toastType.ERROR
+      }"
+    >
+      {{ toast.heading }}
+    </div>
     <div class="toast-body">
       <p>{{ toast.message }}</p>
     </div>

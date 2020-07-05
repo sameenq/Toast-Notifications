@@ -13,7 +13,7 @@ export class Toast {
 }
 
 export enum ToastType {
-  Success,
-  Error,
-  Warning,
+  SUCCESS='SUCCESS',
+  ERROR='ERROR',
+  WARNING='WARNING',
 }
