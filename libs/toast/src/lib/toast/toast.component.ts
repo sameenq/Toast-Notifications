@@ -92,7 +92,7 @@ export class ToastComponent implements OnInit, OnDestroy {
   setToastHeader(toast: Toast) {
     if (!toast) return;
 
-    const classes = ['header'];
+    const classes = ['toast-header'];
 
     const ToastTypeClass = {
       [ToastType.Success]: 'header-success',

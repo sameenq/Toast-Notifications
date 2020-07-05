@@ -40,20 +40,22 @@ $button-border: 0.125rem;
     font-size: 0.8rem;
     font-weight: bold;
     color: white;
+
+    &.header-success {
+      background: $success;
+    }
+    
+    &.header-error {
+      background: $error;
+    }
+    
+    &.header-warning {
+      background: $warning;
+    }
   }
 }
 
-.header-success {
-  background: $success;
-}
 
-.header-error {
-  background: $error;
-}
-
-.header-warning {
-  background: $warning;
-}
 
 .close {
   color: white;
@@ -70,28 +72,28 @@ $button-border: 0.125rem;
 }
 
 /** Positions **/
-.bottom-right {
+.position {
   position: fixed;
-  bottom: 0;
-  right: 0;
-}
 
-.bottom-left {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-}
+  &.bottom-right {
+    bottom: 0;
+    right: 0;
+  }
 
-.top-left {
-  position: fixed;
-  top: 0;
-  left: 0;
-}
+  &.bottom-left {
+    bottom: 0;
+    left: 0;
+  }
 
-.top-right {
-  position: fixed;
-  top: 0;
-  right: 0;
+  &.top-left {
+    top: 0;
+    left: 0;
+  }
+
+  &.top-right {
+    top: 0;
+    right: 0;
+  }
 }
 
 /** Notification Buttons **/
@@ -110,29 +112,29 @@ $button-border: 0.125rem;
   cursor: pointer;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2),
     0 0.375rem 1.25rem 0 rgba(0, 0, 0, 0.19);
-}
 
-.btn-success {
-  @include button-properties($success);
+  &.btn-success {
+    @include button-properties($success);
 
-  &:hover {
-    @include button-hover();
+    &:hover {
+      @include button-hover();
+    }
   }
-}
 
-.btn-error {
-  @include button-properties($error);
+  &.btn-error {
+    @include button-properties($error);
 
-  &:hover {
-    @include button-hover();
+    &:hover {
+      @include button-hover();
+    }
   }
-}
 
-.btn-warning {
-  @include button-properties($warning);
-  
-  &:hover {
-    @include button-hover();
+  &.btn-warning {
+    @include button-properties($warning);
+
+    &:hover {
+      @include button-hover();
+    }
   }
 }
 
