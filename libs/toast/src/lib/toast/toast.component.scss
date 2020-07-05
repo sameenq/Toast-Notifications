@@ -101,34 +101,33 @@
     background-color: #4CAF50; 
     color: white; 
     border: 0.125rem solid #4CAF50;
-  }
   
-  .btn-success:hover {
+  
+  &:hover {
     background-color: white;
     color: #4CAF50;
   }
+}
 
   .btn-error {
     background-color: #f44336; 
     color: white; 
     border: 0.125rem solid #f44336;
-  }
-  
-  .btn-error:hover {
+  &:hover {
     background-color: white;
     color: #f44336;
   }
+}
 
   .btn-warning {
     background-color: #ff9800; 
     color: white; 
     border: 0.125rem solid #ff9800;
-  }
-  
-  .btn-warning:hover {
+  &:hover {
     background-color: white;
     color: #ff9800;
   }
+}
 
   /** Input Select **/
   input[type=number],input[type=text], select {
