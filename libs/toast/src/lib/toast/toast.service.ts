@@ -15,16 +15,16 @@ export class ToastService {
     }
 
     // convenience methods
-    success(message: string, options?: any) {
-        this.toast(new Toast({ ...options, type: ToastType.Success, message }));
+      success(heading:string,message: string, options?: any) {
+        this.toast(new Toast({ ...options, type: ToastType.Success, message,heading }));
     }
 
-    error(message: string, options?: any) {
-        this.toast(new Toast({ ...options, type: ToastType.Error, message }));
+    error(heading:string,message: string, options?: any) {
+        this.toast(new Toast({ ...options, type: ToastType.Error, message,heading }));
     }
 
-    warn(message: string, options?: any) {
-        this.toast(new Toast({ ...options, type: ToastType.Warning, message }));
+    warn(heading:string,message: string, options?: any) {
+        this.toast(new Toast({ ...options, type: ToastType.Warning, message,heading  }));
     }
 
     // main alert method    

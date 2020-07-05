@@ -16,6 +16,7 @@ export class ToastComponent implements OnInit,OnDestroy {
   @Input() fade = true;
   @Input() limit:number;
   @Input() duration:number;
+  @Input() message:string;
  
   position:string = 'top-right';
   private options = {
@@ -40,6 +41,7 @@ export class ToastComponent implements OnInit,OnDestroy {
                 
                 // remove 'keepAfterRouteChange' flag on the rest
                 this.toasts.forEach(x => delete x.keepAfterRouteChange);
+                alert('Please enter notification message');
                 return;
             }
 
@@ -123,7 +125,7 @@ setPosition(position:string){
  */
 showSuccess()
 {
-    this.toastService.success('Success!!', this.options);
+    this.toastService.success('Success!!',this.message, this.options);
 }
 
 /**
@@ -131,7 +133,7 @@ showSuccess()
  */
 showError()
 {
-    this.toastService.error('Error :(', this.options);
+    this.toastService.error('Error :(',this.message, this.options);
 }
 
 /**
@@ -139,7 +141,8 @@ showError()
  */
 showWarning()
 {
-    this.toastService.warn('Warning!.', this.options);
+    this.toastService.warn('Warning!.',this.message, this.options);
 }
 
 }
+
