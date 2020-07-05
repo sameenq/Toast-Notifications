@@ -16,9 +16,9 @@
         <option value="bottom-left">Bottom Left</option>
     </select>
 
-    <button class="btn btn-success" (click)="toastService.success('Success!!', options)">Success</button>
-    <button class="btn btn-error" (click)="toastService.error('Error :(', options)">Error</button>
-    <button class="btn btn-warning " (click)="toastService.warn('Warning: ...', options)">Warning</button>
+    <button class="btn btn-success" (click)="showSuccess()">Success</button>
+    <button class="btn btn-error" (click)="showError()">Error</button>
+    <button class="btn btn-warning " (click)="showWarning()">Warning</button>
 
 </div>
 

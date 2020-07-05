@@ -26,7 +26,7 @@ export class ToastComponent implements OnInit,OnDestroy {
   toasts: Toast[] = [];
   toastSubscription: Subscription;
 
-  constructor(private router: Router, public toastService: ToastService) { }
+  constructor(private router: Router, private toastService: ToastService) { }
 
   ngOnInit() {
     // subscribe to new toast notifications
@@ -117,6 +117,30 @@ setToastType(toast: Toast) {
  */
 setPosition(position:string){
     return position;
+}
+
+/**
+ * Show success notification
+ */
+showSuccess()
+{
+    this.toastService.success('Success!!', this.options);
+}
+
+/**
+ * Show error notification
+ */
+showError()
+{
+    this.toastService.error('Error :(', this.options);
+}
+
+/**
+ * Show warning notification
+ */
+showWarning()
+{
+    this.toastService.warn('Warning: ...', this.options);
 }
 
 }
