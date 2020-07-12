@@ -1,6 +1,7 @@
-$success: #4caf50;
+$success: #39af3d;
 $warning: #ff9800;
-$error: #f44336;
+$error: #d64439;
+$group: #7e7e80;
 $button-border: 0.125rem;
 
 @mixin button-properties($color) {
@@ -52,124 +53,151 @@ $button-border: 0.125rem;
     &.header-warning {
       background: $warning;
     }
-  }
-}
 
-.close {
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 1.2rem;
-  line-height: inherit;
-  margin-right: 0.1rem;
-  cursor: pointer;
-  transition: 0.3s;
-  &:hover {
-    color: black;
-  }
-}
-
-/** Positions **/
-.position {
-  position: fixed;
-
-  &.bottom-right {
-    bottom: 0;
-    right: 0;
-  }
-
-  &.bottom-left {
-    bottom: 0;
-    left: 0;
-  }
-
-  &.top-left {
-    top: 0;
-    left: 0;
-  }
-
-  &.top-right {
-    top: 0;
-    right: 0;
-  }
-}
-
-/** Notification Buttons **/
-.btn {
-  border: none;
-  padding: 1rem 2rem;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 1.4em;
-  display: inline-block;
-  outline: none;
-  width: 10rem;
-  font-size: 1rem;
-  margin: 0.25rem 0.125rem;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2),
-    0 0.375rem 1.25rem 0 rgba(0, 0, 0, 0.19);
-
-  &.btn-success {
-    @include button-properties($success);
-
-    &:hover {
-      @include button-hover();
+    &.header-group {
+      background: $group;
     }
   }
 
-  &.btn-error {
-    @include button-properties($error);
+  .toast-subheading {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
 
-    &:hover {
-      @include button-hover();
+    &.subheading-success {
+      color: $success;
     }
-  }
+    
+    &.subheading-error {
+      color: $error;
+    }
+    
+    &.subheading-warning {
+      color: $warning;
+    }
 
-  &.btn-warning {
-    @include button-properties($warning);
-
-    &:hover {
-      @include button-hover();
+    &.subheading-group {
+      color: $group;
     }
   }
 }
 
-/** Input Select **/
-input[type='number'],
-input[type='text'],
-select {
-  width: 100%;
-  padding: 0.75rem 1.25rem;
-  margin: 0.5rem 0;
-  display: inline-block;
-  border: 0.0625rem solid #ccc;
-  border-radius: 0.25rem;
-  box-sizing: border-box;
-  font-size: 1rem;
-  cursor: pointer;
-}
+  .close {
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 1.2rem;
+    line-height: inherit;
+    margin-right: 0.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      color: black;
+    }
+  }
 
-.hideChildren>div{
-    display: none;
- }
- 
-/** Container**/
-.container {
-  border-radius: 0.3125rem;
-  background-color: #f2f2f2;
-  padding: 1.25rem;
-}
+  /** Positions **/
+  .position {
+    position: fixed;
+
+    &.bottom-right {
+      bottom: 0;
+      right: 0;
+    }
+
+    &.bottom-left {
+      bottom: 0;
+      left: 0;
+    }
+
+    &.top-left {
+      top: 0;
+      left: 0;
+    }
+
+    &.top-right {
+      top: 0;
+      right: 0;
+    }
+  }
+
+  /** Notification Buttons **/
+  .btn {
+    border: none;
+    padding: 1rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 1.4em;
+    display: inline-block;
+    outline: none;
+    width: 10rem;
+    font-size: 1rem;
+    margin: 0.25rem 0.125rem;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2),
+      0 0.375rem 1.25rem 0 rgba(0, 0, 0, 0.19);
+
+    &.btn-success {
+      @include button-properties($success);
+
+      &:hover {
+        @include button-hover();
+      }
+    }
+
+    &.btn-error {
+      @include button-properties($error);
+
+      &:hover {
+        @include button-hover();
+      }
+    }
+
+    &.btn-warning {
+      @include button-properties($warning);
+
+      &:hover {
+        @include button-hover();
+      }
+    }
+  }
+
+  /** Input Select **/
+  input[type='number'],
+  input[type='text'],
+  select {
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    margin: 0.5rem 0;
+    display: inline-block;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .hideChildren>div{
+      display: none;
+  }
+  
+  /** Container**/
+  .container {
+    border-radius: 0.3125rem;
+    background-color: #f2f2f2;
+    padding: 1.25rem;
+  }
 
 
-/** Group Notification badge **/
-.badge {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  padding: 5px 10px;
-  border-radius: 50%;
-  background-color: red;
-  color: white;
-}
+  /** Group Notification badge **/
+  .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+  }

@@ -40,14 +40,25 @@
   </div>
 
   <div *ngIf="groupToasts.length>0;"  class="toast">
-    <span class="close" >&times;</span>
     <span class="badge">{{groupToasts.length}}</span>
-    <div class="toast-header" [ngClass]="{'header-success':  toastType.SUCCESS}">Group Message</div>
-    <div class="toast-body"   (click)="ele.class = ele.class == 'showChildren' ? '' :  'showChildren'"
-    [ngClass]="{ hideChildren : ele.class !== 'showChildren' }" #ele>
-    {{ele.ngClass}} <button (click)='toggle()'>{{buttonName}}</button>
+    <div class="toast-header header-group">Group Message</div>
+    <div class="toast-body"
+    (click)="element.class = element.class == 'showChildren' ? '' :  'showChildren'"
+    [ngClass]="{ hideChildren : element.class !== 'showChildren' }"
+     #element> {{element.ngClass}} 
+    <button (click)='toggle()'>{{buttonName}}</button>
     <div *ngFor="let groupMessage of groupToasts;" > 
-        <div ><b>{{groupMessage.type}}</b> {{groupMessage.message}}</div>
+        <div>
+          <b class="toast-subheading" 
+          [ngClass]="{
+          'subheading-success': groupMessage.type === toastType.SUCCESS,
+          'subheading-warning': groupMessage.type === toastType.WARNING,
+          'subheading-error': groupMessage.type === toastType.ERROR
+          }">
+          {{groupMessage.type}}
+        </b> 
+        {{groupMessage.message}}
+      </div>
     </div>
     </div>
 </div>

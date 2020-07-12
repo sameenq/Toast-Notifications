@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
-
-import { Toast, ToastType, HeaderMessage } from './toast.model';
+import { Toast,ToastType, HeaderMessage } from './toast.model';
 import { ToastService } from './toast.service';
 import { MODAL_CONFIG_DEFAULTS } from './toast.config';
 
@@ -10,26 +9,22 @@ import { MODAL_CONFIG_DEFAULTS } from './toast.config';
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss'],
 })
+
 export class ToastComponent implements OnInit, OnDestroy {
-  @Input() fade = MODAL_CONFIG_DEFAULTS.fade;
   @Input() limit= MODAL_CONFIG_DEFAULTS.limit;
   @Input() duration= MODAL_CONFIG_DEFAULTS.duration;
   @Input() message= MODAL_CONFIG_DEFAULTS.message;
 
-  position= MODAL_CONFIG_DEFAULTS.position;
-
-  private options = {
-    keepAfterRouteChange: false,
-  };
-
-  toasts: Toast[] = [];
-  groupToasts: Toast[] = [];
-
-  toastSubscription: Subscription;
-  toastType= ToastType;
-  public show:boolean = false;
+  public position = MODAL_CONFIG_DEFAULTS.position;
+  public toasts: Toast[] = [];
+  public groupToasts: Toast[] = [];
+  public toastType = ToastType;
   public buttonName:any = 'Show';
 
+  private fade = MODAL_CONFIG_DEFAULTS.fade;
+  private toastSubscription: Subscription;
+  private view:boolean = false;
+ 
   constructor(private toastService: ToastService) {}
 
   ngOnInit() {
@@ -37,17 +32,13 @@ export class ToastComponent implements OnInit, OnDestroy {
     this.toastSubscription = this.toastService
       .onToast()
       .subscribe((toast) => {
-        toast.position = this.position;
-        // clear toasts when an empty alert is received
-        if (!toast.message) {
-          // filter out alerts without 'keepAfterRouteChange' flag
-          this.toasts = this.toasts.filter((x) => x.keepAfterRouteChange);
 
-          // remove 'keepAfterRouteChange' flag on the rest
-          this.toasts.forEach((x) => delete x.keepAfterRouteChange);
+        if (!toast.message) {
           alert('Please enter notification message');
           return;
         }
+
+        toast.position = this.position;
 
         if (this.toasts.length < this.limit) {
           this.toasts.push(toast);
@@ -56,10 +47,12 @@ export class ToastComponent implements OnInit, OnDestroy {
           this.groupToasts.push(toast);
         }
 
-        setTimeout(() =>{
-          this.removeToast(toast);
-          this.removeGroupToast(toast);
-        }, this.duration);
+        setTimeout(() => {
+            this.removeToast(toast);
+            this.removeGroupToast(toast);
+          }, this.duration
+        );
+
       });
   }
 
@@ -68,10 +61,11 @@ export class ToastComponent implements OnInit, OnDestroy {
     this.toastSubscription.unsubscribe();
   }
 
-  removeGroupToast(toast)
+  removeGroupToast(toast:Toast)
   {
     if (this.groupToasts.length>0) {
       this.groupToasts = this.toasts.filter((x) => x !== toast);
+      this.buttonName = "Show";
     }
 
   }
@@ -99,31 +93,30 @@ export class ToastComponent implements OnInit, OnDestroy {
    * Show success notification
    */
   showSuccess() {
-    this.toastService.success(HeaderMessage.SUCCESS, this.message, this.options);
+    this.toastService.success(HeaderMessage.SUCCESS, this.message);
   }
 
   /**
    * Show error notification
    */
   showError() {
-    this.toastService.error(HeaderMessage.ERROR, this.message, this.options);
+    this.toastService.error(HeaderMessage.ERROR, this.message);
   }
 
   /**
    * Show warning notification
    */
   showWarning() {
-    this.toastService.warning(HeaderMessage.WARNING, this.message, this.options);
+    this.toastService.warning(HeaderMessage.WARNING, this.message);
   }
 
   /**
    * Toggle group notification button text
    */
   toggle() {
-    this.show = !this.show;
+    this.view = !this.view;
 
-    // CHANGE THE NAME OF THE BUTTON.
-    if(this.show)  
+    if(this.view)
       this.buttonName = "Hide";
     else
       this.buttonName = "Show";

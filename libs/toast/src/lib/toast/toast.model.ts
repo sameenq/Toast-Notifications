@@ -3,7 +3,6 @@ export class Toast {
   type: ToastType;
   heading: string;
   message: string;
-  keepAfterRouteChange: boolean;
   fade: boolean;
   position: string;
 
