@@ -1,18 +1,34 @@
 export class Toast {
-    type: ToastType;
-    heading:string;
-    message: string;
-    keepAfterRouteChange: boolean;
-    fade: boolean;
-    position:string;
+  id: string;
+  type: ToastType;
+  heading: string;
+  message: string;
+  keepAfterRouteChange: boolean;
+  fade: boolean;
+  position: string;
 
-    constructor(init?:Partial<Toast>) {
-        Object.assign(this, init);
-    }
+  constructor(init?: Partial<Toast>) {
+    Object.assign(this, init);
+  }
+}
+
+export interface ModalConfig
+{
+    duration: number;
+    fade: boolean;
+    limit: number,
+    message: string, 
+    position: string;
 }
 
 export enum ToastType {
-    Success,
-    Error,
-    Warning
+  SUCCESS = 'SUCCESS',
+  ERROR = 'ERROR',
+  WARNING = 'WARNING',
 }
+
+export enum HeaderMessage {
+    SUCCESS = 'Success :)',
+    ERROR = 'Error :(',
+    WARNING = 'Warning!',
+  }

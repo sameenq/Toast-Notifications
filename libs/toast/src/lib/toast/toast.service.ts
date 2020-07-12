@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-import { Toast, ToastType} from './toast.model';
+import { Toast, ToastType } from './toast.model';
 
 @Injectable({ providedIn: 'root' })
 export class ToastService {
@@ -13,15 +13,15 @@ export class ToastService {
     }
 
     success(heading:string,message: string, options?: any) {
-        this.showToast(new Toast({ ...options, type: ToastType.Success, message,heading }));
+        this.showToast(new Toast({ ...options, type: ToastType.SUCCESS, message,heading }));
     }
 
     error(heading:string,message: string, options?: any) {
-        this.showToast(new Toast({ ...options, type: ToastType.Error, message,heading }));
+        this.showToast(new Toast({ ...options, type: ToastType.ERROR, message,heading }));
     }
 
     warning(heading:string,message: string, options?: any) {
-        this.showToast(new Toast({ ...options, type: ToastType.Warning, message,heading  }));
+        this.showToast(new Toast({ ...options, type: ToastType.WARNING, message,heading  }));
     }
     
     

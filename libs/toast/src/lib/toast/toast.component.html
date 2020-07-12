@@ -1,49 +1,54 @@
-<div class='container'>
+<div class="container">
+  <h1>Toast Messages</h1>
 
-    <h1>Toast Messages</h1>
+  <label>Timeout Duration</label>
+  <input [(ngModel)]="duration" type="number" />
 
-    <label>Timeout Duration</label>
-    <input [(ngModel)]="duration" type="number" />
+  <label>Limit</label>
+  <input [(ngModel)]="limit" type="number" />
 
-    <label>Limit</label>
-    <input [(ngModel)]="limit" type="number" />
+  <label>Notification Message</label>
+  <input [(ngModel)]="message" type="text" />
 
-    <label>Notification Message</label>
-    <input [(ngModel)]="message" type="text" />
+  <label>Position</label>
+  <select [(ngModel)]="position">
+    <option value="top-right">Top Right</option>
+    <option value="top-left">Top Left</option>
+    <option value="bottom-right">Bottom Right</option>
+    <option value="bottom-left">Bottom Left</option>
+  </select>
 
-    <label>Position</label>
-    <select [(ngModel)]="position">
-        <option value="top-right">Top Right</option>
-        <option value="top-left">Top Left</option>
-        <option value="bottom-right">Bottom Right</option>
-        <option value="bottom-left">Bottom Left</option>
-    </select>
-
-    <button class="btn btn-success" (click)="showSuccess()">Success</button>
-    <button class="btn btn-error" (click)="showError()">Error</button>
-    <button class="btn btn-warning " (click)="showWarning()">Warning</button>
-
+  <button class="btn btn-success" (click)="showSuccess()">Success</button>
+  <button class="btn btn-error" (click)="showError()">Error</button>
+  <button class="btn btn-warning" (click)="showWarning()">Warning</button>
 </div>
-
-<div class="{{setPosition(position)}}">
-    <div *ngFor="let toast of toasts;let i = index;" class="toast">
-        <span class="close" (click)="removeToast(toast)">&times;</span>
-        <div class="{{setToastHeader(toast)}}">{{toast.heading}}</div>
-        <div class="toast-body">
-            <p>{{toast.message}}</p>
-        </div>
-    </div>
-    <div *ngIf="groupToast.length>0;"  class="toast">
-        <span class="close" >&times;</span>
-        <div class="header header-success">Group Message</div>
-        <div class="toast-body"   (click)="ele.class = ele.class == 'showChildren' ? '' :  'showChildren'"
-        [ngClass]="{ hideChildren : ele.class !== 'showChildren' }" #ele>
-        {{ele.ngClass}} <button (click)='toggle()'>{{buttonName}}</button>
-        <div *ngFor="let groupMessage of groupToast;" > 
-            <div ><b>{{groupMessage.type}}</b>{{groupMessage.message}}</div>
-        </div>
-        </div>
-    </div>
- </div>
-
  
+<div class="position" [ngClass]="position">
+  <div *ngFor="let toast of toasts" class="toast">
+    <span class="close" (click)="removeToast(toast)">&times;</span>
+    <div class="toast-header"
+      [ngClass]="{
+        'header-success': toast.type === toastType.SUCCESS,
+        'header-warning': toast.type === toastType.WARNING,
+        'header-error': toast.type === toastType.ERROR
+      }">
+      {{ toast.heading }}
+    </div>
+    <div class="toast-body">
+      <p>{{ toast.message }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="groupToasts.length>0;"  class="toast">
+    <span class="close" >&times;</span>
+    <span class="badge">{{groupToasts.length}}</span>
+    <div class="toast-header" [ngClass]="{'header-success':  toastType.SUCCESS}">Group Message</div>
+    <div class="toast-body"   (click)="ele.class = ele.class == 'showChildren' ? '' :  'showChildren'"
+    [ngClass]="{ hideChildren : ele.class !== 'showChildren' }" #ele>
+    {{ele.ngClass}} <button (click)='toggle()'>{{buttonName}}</button>
+    <div *ngFor="let groupMessage of groupToasts;" > 
+        <div ><b>{{groupMessage.type}}</b> {{groupMessage.message}}</div>
+    </div>
+    </div>
+</div>
+</div>
