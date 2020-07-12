@@ -12,11 +12,15 @@ import { ToastService } from './toast.service';
 
 export class ToastComponent implements OnInit,OnDestroy {
 
-  @Input() id = 'default-alert';
   @Input() fade = true;
   @Input() limit:number;
   @Input() duration:number;
   @Input() message:string;
+
+  public show:boolean = false;
+ public buttonName:any = 'Show';
+
+  value:any;
  
   position:string = 'top-right';
   private options = {
@@ -24,43 +28,50 @@ export class ToastComponent implements OnInit,OnDestroy {
 };
 
   toasts: Toast[] = [];
-  toastSubscription: Subscription;
+  groupToast: Toast[] = [];
 
+  toastSubscription: Subscription;
+  
   constructor(private toastService: ToastService) { }
 
   ngOnInit() {
-    // subscribe to new toast notifications
-    this.toastSubscription = this.toastService.onToast(this.id)
-        .subscribe(toast => {
 
-            toast.position = this.position;
-            // clear toasts when an empty alert is received
-            if (!toast.message) {
-                // filter out alerts without 'keepAfterRouteChange' flag
-                this.toasts = this.toasts.filter(x => x.keepAfterRouteChange);
-                
-                // remove 'keepAfterRouteChange' flag on the rest
-                this.toasts.forEach(x => delete x.keepAfterRouteChange);
-                alert('Please enter notification message');
-                return;
-            }
+    this.toastSubscription = this.toastService.onToast().subscribe(toast => {
+        toast.position = this.position;
+        // clear toasts when an empty alert is received
+        if (!toast.message) {
+            // filter out toasts without 'keepAfterRouteChange' flag
+            this.toasts = this.toasts.filter(x => x.keepAfterRouteChange);
+            
+            // remove 'keepAfterRouteChange' flag on the rest
+            this.toasts.forEach(x => delete x.keepAfterRouteChange);
+            alert('Please enter notification message');
+            return;
+        }git init
 
-            //set toast limit to 5 only if unset
-            if(!this.limit){
-                this.limit = 5;
-            }
+        //set toast limit to 5 only if unset
+        if(!this.limit){
+            this.limit = 5;
+        }
+        // Set toast timeout to 5 seconds if the user input is empty
+        if (!this.duration) {
+            this.duration = 5000;
+        }
 
-            if(this.toasts.length < this.limit){
-                this.toasts.push(toast);
-            }
-           
-            // Set toast timeout to 5 seconds if the user input is empty
-            if (!this.duration) {
-                this.duration = 5000;
-            }
+        if(this.toasts.length<this.limit)
+        {
+            this.toasts.push(toast);
+        }
+        else{
+            this.groupToast.push(toast);
 
-            setTimeout(() => this.removeToast(toast), this.duration);
-       });
+        }
+       
+        setTimeout(() => {
+            this.removeToast(toast);
+        }, this.duration);
+
+    });
 }
 
 ngOnDestroy() {
@@ -79,11 +90,43 @@ removeToast(toast: Toast) {
         // remove toast after faded out
         setTimeout(() => {
             this.toasts = this.toasts.filter(x => x !== toast);
+            this.groupToast = [];
         }, 250);
     } else {
         // remove toast
-        this.toasts = this.toasts.filter(x => x !== toast);
+       this.toasts = this.toasts.filter(x => x !== toast);
     }
+}
+
+toggle() {
+    this.show = !this.show;
+
+    // CHANGE THE NAME OF THE BUTTON.
+    if(this.show)  
+      this.buttonName = "Hide";
+    else
+      this.buttonName = "Show";
+  }
+
+/**
+ * Show success notification
+ */
+showSuccess(){
+    this.toastService.success('Success!!',this.message, this.options);
+}
+
+/**
+ * Show error notification
+ */
+showError(){
+    this.toastService.error('Error :(',this.message, this.options);
+}
+
+/**
+ * Show warning notification
+ */
+showWarning(){
+    this.toastService.warning('Warning!.',this.message, this.options);
 }
 
 /**
@@ -118,30 +161,6 @@ setToastHeader(toast: Toast) {
  */
 setPosition(position:string){
     return position;
-}
-
-/**
- * Show success notification
- */
-showSuccess()
-{
-    this.toastService.success('Success!!',this.message, this.options);
-}
-
-/**
- * Show error notification
- */
-showError()
-{
-    this.toastService.error('Error :(',this.message, this.options);
-}
-
-/**
- * Show warning notification
- */
-showWarning()
-{
-    this.toastService.warn('Warning!.',this.message, this.options);
 }
 
 }

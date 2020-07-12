@@ -26,12 +26,24 @@
 </div>
 
 <div class="{{setPosition(position)}}">
-    <div *ngFor="let toast of toasts" class="toast">
-    <span class="close" (click)="removeToast(toast)">&times;</span>
-        <div class="{{setToastHeader(toast)}}" [innerHTML]="toast.heading"></div>
+    <div *ngFor="let toast of toasts;let i = index;" class="toast">
+        <span class="close" (click)="removeToast(toast)">&times;</span>
+        <div class="{{setToastHeader(toast)}}">{{toast.heading}}</div>
         <div class="toast-body">
-            <p [innerHTML]="toast.message"></p>
+            <p>{{toast.message}}</p>
+        </div>
+    </div>
+    <div *ngIf="groupToast.length>0;"  class="toast">
+        <span class="close" >&times;</span>
+        <div class="header header-success">Group Message</div>
+        <div class="toast-body"   (click)="ele.class = ele.class == 'showChildren' ? '' :  'showChildren'"
+        [ngClass]="{ hideChildren : ele.class !== 'showChildren' }" #ele>
+        {{ele.ngClass}} <button (click)='toggle()'>{{buttonName}}</button>
+        <div *ngFor="let groupMessage of groupToast;" > 
+            <div ><b>{{groupMessage.type}}</b>{{groupMessage.message}}</div>
+        </div>
         </div>
     </div>
  </div>
 
+ 
